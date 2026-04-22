@@ -7,19 +7,19 @@ package:
 
 source:
   url: https://github.com/mcherukara/PtychoNN/archive/v{{ version }}.tar.gz
-  sha256: 94bb4c0a09901934da9e459583a196bd17a0b0ce4f2811a1ef4b2729e84f7dc7
+  sha256: 89393cdbd3b9d624f844a670d60274fb4efb03286e747e592d02fe004fa3d2d3
 
 build:
   entry_points:
     - ptychonn = ptychonn.__main__:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
     - setuptools >=45
     - setuptools_scm
     - setuptools_scm_git_archive
@@ -32,7 +32,7 @@ requirements:
     - matplotlib-base
     - numpy >=1.21,<2
     - pandas
-    - python >=3.6
+    - python >={{ python_min }}
     - pytorch >=1.12,<2.1
     - scikit-image
     - scikit-learn
@@ -45,6 +45,7 @@ test:
     - ptychonn
   requires:
     - pip
+    - python {{ python_min }}
   commands:
     - pip check
     - ptychonn --help
